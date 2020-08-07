@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar productos</title>
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-info"  style="background-color:	#7CFC00" >
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link active" href='/'>{{ Menu }}</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link active" href='/listarproducto'>{{ Producto }}</a>
+        </li>
+        <li class="nav-item active active">
+            <a class="nav-link" href='/listarfactura'>{{ Factura }}</a>
+        </li>
+        </ul>
+    </nav>
+    <h1>Listado de clientes</h1>
+    <table class="table table-sm table-info table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>RUC</th>
+                <th>Nombre</th>
+                <th>Direccion</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <body>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{cliente.id }}</td>
+                <td>{{cliente.ruc }}</td>
+                <td>{{cliente.nombre }}</td>
+                <td>{{cliente.direccion }}</td>
+                <td>
+                    <ul>
+                        <l1><a class="btn btn-outline-secondary" href="{% url 'cliente' %}">Ingresar</a></l1>
+                        <l1><a class="btn btn-outline-secondary" href="{% url 'editarcliente' cliente.id %}">Modifcar</a></l1>
+                        <l1><a class="btn btn-outline-secondary" href="{% url 'eliminarcliente' cliente.id %}">Eliminar</a></l1>
+
+                    </ul>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </body>
+
+    </table>
+</body>
+
+</html>
